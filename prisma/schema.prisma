@@ -31,3 +31,23 @@ model Session {
   collaborator  Boolean? @default(false)
   emailVerified Boolean? @default(false)
 }
+
+model MetafieldDefaults {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  shop             String   @unique
+  
+  // Decimal fields (stored as strings to preserve precision)
+  etsyDiscount     String?
+  shipping         String?
+  vat              String?
+  normalMultiplier String?
+  ooakMultiplier   String?
+  etsyMarkupProfit String?
+  hourlyRate       String?
+  
+  // Text field (default rarity for new products)
+  rarity           String?
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
